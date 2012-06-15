@@ -3,6 +3,11 @@ source "http://rubygems.org"
 # Example:
 #   gem "activesupport", ">= 2.3.5"
 gem 'sinatra', '>=1.3.2'
+gem 'unicorn'
+gem 'capistrano'
+gem 'rvm-capistrano'
+
+# These gem dependencies are really dependencies of dependencies that aren't properly gem-ified yet
 gem 'activerecord', '>=3.2.6'
 gem 'bio-logger'
 gem "sqlite3", ">= 1.3.3"
@@ -13,7 +18,6 @@ group :development do
   gem "rspec", "~> 2.8.0"
   gem "yard", "~> 0.7"
   gem "rdoc", "~> 3.12"
-  gem "cucumber", ">= 0"
   gem "jeweler", "~> 1.8.3"
   gem "bundler", ">= 1.0.21"
   gem "bio", ">= 1.4.2"

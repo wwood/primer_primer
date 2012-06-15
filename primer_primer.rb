@@ -6,16 +6,18 @@
 
 require 'sinatra'
 
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'bioruby-krona','lib'))
+BASE_GIT_DIR = '/home/ben/git'
+
+$LOAD_PATH.unshift(File.join(BASE_GIT_DIR, 'bioruby-krona','lib'))
 require 'bio-krona'
 
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'bioruby-ipcress','lib'))
+$LOAD_PATH.unshift(File.join(BASE_GIT_DIR, 'bioruby-ipcress','lib'))
 require 'bio-ipcress'
 
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'amplicon_encyclopaedia','lib'))
+$LOAD_PATH.unshift(File.join(BASE_GIT_DIR, 'amplicon_encyclopaedia','lib'))
 require 'amplicon_encyclopaedia'
 
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'bioruby-sra','lib'))
+$LOAD_PATH.unshift(File.join(BASE_GIT_DIR, 'bioruby-sra','lib'))
 require 'bio-sra'
 
 class PrimerPrimer < Sinatra::Base
@@ -74,7 +76,7 @@ class PrimerPrimer < Sinatra::Base
     end
   end
 
-  get '/:forward_primer/:reverse_primer' do
+  get 'primers/:forward_primer/:reverse_primer' do
     acceptable_hits = {}
     cache_greengenes
 
@@ -122,6 +124,5 @@ class PrimerPrimer < Sinatra::Base
       end
       Bio::Krona.html(negative_collapsed)
     end
-      
   end
 end
