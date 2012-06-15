@@ -1,0 +1,10 @@
+
+<h2>SRA <%= @accession %></h1>
+
+<%= @runs[0].study_abstract %>
+<p>
+<a href="http://scholar.google.com/scholar?q='<%= @all_sra_accession_numbers.join(' OR ') %>'">Search for publications that mention this accession number</a>
+</p>
+
+
+<h2>Linked Amplicon Encyclopaedia info</h2>
