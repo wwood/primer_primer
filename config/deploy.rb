@@ -1,4 +1,4 @@
-set :application, "primer_primer"
+<set :application, "primer_primer"
 set :repository,  "/home/ben/git/primer_primer"
 set :domain, 'localhost'#"scmb-bwoodc.biosci.uq.edu.au"
 set :use_sudo, false
