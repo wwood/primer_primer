@@ -1,4 +1,4 @@
-<set :application, "primer_primer"
+set :application, "primer_primer"
 set :repository,  "/home/ben/git/primer_primer"
 set :domain, 'localhost'#"scmb-bwoodc.biosci.uq.edu.au"
 set :use_sudo, false
@@ -6,7 +6,7 @@ set :use_sudo, false
 set :scm, :git
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
-set :deploy_to, "/srv/primer_primer"
+set :deploy_to, "/var/www/primer_primer"
 
 role :web, domain                          # Your HTTP server, Apache/etc
 role :app, domain                          # This may be the same as your `Web` server

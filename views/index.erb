@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<title>A primer primer</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="Ben J Woodcroft">
+
+		<!-- Le styles -->
+		<link href="/css/bootstrap.min.css" rel="stylesheet">
+		<style type="text/css">
+			body {
+				padding-top: 60px;
+				padding-bottom: 40px;
+			}
+		</style>
+		<link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="container">
+			<div class="row-fluid">
+				<h1>Primer primer</h1>
+				<form action='/primers' class="form-horizontal">
+					<fieldset>
+						<legend>
+							Test out the phylogenetic reach of primers using the GreenGenes rep set:
+						</legend>
+						<div class="control-group">
+							<label class="control-label" for="forward_primer">Forward primer</label>
+							<div class="controls">
+								<input type='text' id="forward_primer" name="forward_primer" value="AAACTYAAAKGAATTGRCGG"/>
+							</div>
+						</div>
+						<div class="control-group">
+
+							<label class="control-label" for="reverse_primer">Reverse primer</label>
+							<div class="controls">
+								<input type='text' id="reverse_primer" name="reverse_primer" value="ACGGGCGGTGWGTRC"/>
+							</div>
+
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="negative">What to plot?</label>
+							<div class="controls">
+								<div class="inputs-list">
+									<label>
+										<input type="radio" name="negative" value="0" checked="true"/>
+										<span>Plot the lineages these primers amplify</span> </label>
+									<label>
+										<p class="help-block">
+											The following options are for plotting what does <b>not</b> amplify:
+										</p> </label>
+									<label>
+										<input type="radio" name="negative" value="1" />
+										<span>Kingdom-wise breakdown</span> </label>
+									<label>
+										<input type="radio" name="negative" value="2" />
+										<span>Phylum-wise breakdown</span> </label>
+									<label>
+										<input type="radio" name="negative" value="3" />
+										<span>Class-wise breakdown (best?)</span> </label>
+									<label>
+										<input type="radio" name="negative" value="4" />
+										<span>Order-wise breakdown</span> </label>
+									<label>
+										<input type="radio" name="negative" value="5" />
+										<span>Family-wise breakdown</span> </label>
+									<label>
+										<input type="radio" name="negative" value="6" />
+										<span>Genus-wise breakdown</span> </label>
+								</div>
+							</div>
+						</div>
+						<div class="control-group">
+							<div class="controls">
+								<input type='submit' value="in-silico PCR" class="btn btn-primary btn-medium" />
+							</div>
+						</div>
+					</fieldset>
+				</form>
+
+				<p>
+					For comparison, here is an <a href='/greengenes'>overview</a> of all the species in GreenGenes.
+				</p>
+			</div>
+		</div>
+	</body>
+</html>
