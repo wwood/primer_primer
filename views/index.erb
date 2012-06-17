@@ -14,18 +14,22 @@
 			body {
 				padding-top: 60px;
 				padding-bottom: 40px;
+				background: #fff url(img/Pointing-left.svg) no-repeat fixed right 250px; /* Modified from https://secure.wikimedia.org/wikipedia/commons/wiki/File:Pointing-left.svg) */
 			}
 		</style>
 		<link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
 	</head>
 	<body>
 		<div class="container">
-			<div class="row-fluid">
+
+			<div class="page-header">
 				<h1>Primer primer</h1>
+			</div>
+			<div class="row-fluid">
 				<form action='/primers' class="form-horizontal">
 					<fieldset>
 						<legend>
-							Test out the phylogenetic reach of primers using the GreenGenes rep set:
+							Test out the phylogenetic reach of 16S rDNA primers using the GreenGenes 97% rep set:
 						</legend>
 						<div class="control-group">
 							<label class="control-label" for="forward_primer">Forward primer</label>
@@ -42,34 +46,31 @@
 
 						</div>
 						<div class="control-group">
-							<label class="control-label" for="negative">What to plot?</label>
+							<label class="control-label" for="negative">What to show?</label>
 							<div class="controls">
 								<div class="inputs-list">
 									<label>
 										<input type="radio" name="negative" value="0" checked="true"/>
 										<span>Plot the lineages these primers amplify</span> </label>
-									<label>
-										<p class="help-block">
-											The following options are for plotting what does <b>not</b> amplify:
+									<label> <!-- <p class="help-block">
+										The following options are for plotting what does <b>not</b> amplify:
 										</p> </label>
-									<label>
+										<label>
 										<input type="radio" name="negative" value="1" />
 										<span>Kingdom-wise breakdown</span> </label>
-									<label>
+										<label>
 										<input type="radio" name="negative" value="2" />
-										<span>Phylum-wise breakdown</span> </label>
-									<label>
-										<input type="radio" name="negative" value="3" />
-										<span>Class-wise breakdown (best?)</span> </label>
-									<label>
+										<span>Phylum-wise breakdown</span> </label> --> <label>
+											<input type="radio" name="negative" value="3" />
+											<span>Plot underrepresentation of classes</span> </label> <!-- <label>
 										<input type="radio" name="negative" value="4" />
 										<span>Order-wise breakdown</span> </label>
-									<label>
+										<label>
 										<input type="radio" name="negative" value="5" />
 										<span>Family-wise breakdown</span> </label>
-									<label>
+										<label>
 										<input type="radio" name="negative" value="6" />
-										<span>Genus-wise breakdown</span> </label>
+										<span>Genus-wise breakdown</span> </label> -->
 								</div>
 							</div>
 						</div>
@@ -82,9 +83,10 @@
 				</form>
 
 				<p>
-					For comparison, here is an <a href='/greengenes'>overview</a> of all the species in GreenGenes.
+					For comparison, here is an <a href='/greengenes'>overview</a> of all the species in GreenGenes. If you find this website useful, please cite the software underpinning - talk to ben.
 				</p>
 			</div>
 		</div>
+
 	</body>
 </html>
