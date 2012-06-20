@@ -6,7 +6,7 @@
 
 require 'sinatra'
 
-BASE_GIT_DIR = '/home/ben/git'
+BASE_GIT_DIR = '/mnt/luca/git'
 
 $LOAD_PATH.unshift(File.join(BASE_GIT_DIR, 'bioruby-krona','lib'))
 require 'bio-krona'
@@ -121,9 +121,19 @@ class PrimerPrimer < Sinatra::Base
         acceptables = acceptable_collapsed[lineage]
         acceptables ||= 0
         num_negative = gg_collapsed[lineage].to_f-acceptables
-        negative_collapsed[lineage] = (num_negative+1)/(acceptables+1)-1
-        # impose a zero minimum, otherwise that is just confusing
-        negative_collapsed[lineage] = 0 if negative_collapsed[lineage]<0
+        score = (num_negative+1)/(acceptables+1)-1
+        
+        # Rename the entry to show how many species are hit
+        newname = "#{lineage[lineage.length-1]} (hits #{acceptables}/#{gg_collapsed[lineage]})"
+        new_lineage = lineage[0..(lineage.length-2)]
+        new_lineage.push newname
+        
+        if score < 0
+          # impose a zero minimum, otherwise that is just confusing
+          negative_collapsed[new_lineage] = 0
+        else
+          negative_collapsed[new_lineage] = score
+        end
       end
       Bio::Krona.html(negative_collapsed)
     end
