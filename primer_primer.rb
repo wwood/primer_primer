@@ -21,6 +21,7 @@ $LOAD_PATH.unshift(File.join(BASE_GIT_DIR, 'bioruby-sra','lib'))
 require 'bio-sra'
 
 class PrimerPrimer < Sinatra::Base
+  
   def self.init
     @@greengenes_otu_ids_to_species = {}
     $stderr.print "Caching greengenes background..."
@@ -36,7 +37,7 @@ class PrimerPrimer < Sinatra::Base
     @@greengenes_otu_ids_to_species.each do |otu_id, lineage|
       @@background_greengenes_hash[lineage] = 1
     end
-    $stderr.puts 'done'
+    $stderr.puts 'done caching greengenes'
   end
   
   def greengenes_otu_ids_to_species
@@ -48,9 +49,13 @@ class PrimerPrimer < Sinatra::Base
   end
 
   def cache_amplicon_encyclopaedia
-    $stderr.print "Caching amplicon encyclopaedia..."
+    logger.debug "Caching amplicon encyclopaedia..."
     @amplicon_encyclopaedia = AmpliconEncyclopaedia::CSVDatabase.new.publications_hash
-    $stderr.puts 'done'
+    logger.debug 'done'
+  end
+  
+  configure do
+    enable :logging
   end
 
   get '/' do
@@ -88,7 +93,10 @@ class PrimerPrimer < Sinatra::Base
     gg_fasta = '/home/ben/mnt/hawke_gut/srv/whitlam/bio/db/gg/qiime_default/gg_otus_4feb2011/rep_set/gg_94_otus_4feb2011.fasta'
     ipcress_hits = Bio::Ipcress.run(primer_set, gg_fasta, :mismatches => 1)
 
-    $stderr.puts "Found #{ipcress_hits.length} hits with ipcress total (probably there is multiple hits in each species)"
+    logger.debug "Found #{ipcress_hits.length} hits with ipcress total (probably there is multiple hits in each species)"
+    if ipcress_hits.empty?
+      return "Sorry, no hits found."
+    end
     ipcress_hits.each do |ipcress|
       mismatches2 = ipcress.recalculate_mismatches_from_alignments
       if mismatches2[0] == 0 and mismatches2[1] == 0
