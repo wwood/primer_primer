@@ -7,8 +7,8 @@
 require 'sinatra'
 
 BASE_GIT_DIR = '/mnt/luca/git'
-GG_TAXONOMY_FILE = '/mnt/hawke/srv/whitlam/bio/db/gg/qiime_default/gg_otus_4feb2011/taxonomies/greengenes_tax.txt'
-GG_FASTA_FILE = '/mnt/hawke/srv/whitlam/bio/db/gg/qiime_default/gg_otus_4feb2011/rep_set/gg_94_otus_4feb2011.fasta'
+GG_TAXONOMY_FILE = 'greengenes_tax.txt'#'/mnt/hawke_gut/srv/whitlam/bio/db/gg/qiime_default/gg_otus_4feb2011/taxonomies/greengenes_tax.txt'
+GG_FASTA_FILE = 'gg_94_otus_4feb2011.fasta'#'/mnt/hawke_gut/srv/whitlam/bio/db/gg/qiime_default/gg_otus_4feb2011/rep_set/gg_94_otus_4feb2011.fasta'
 
 $LOAD_PATH.unshift(File.join(BASE_GIT_DIR, 'bioruby-krona','lib'))
 require 'bio-krona'
