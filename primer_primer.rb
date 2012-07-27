@@ -7,6 +7,8 @@
 require 'sinatra'
 
 BASE_GIT_DIR = '/mnt/luca/git'
+GG_TAXONOMY_FILE = 'greengenes_tax.txt'#'/mnt/hawke_gut/srv/whitlam/bio/db/gg/qiime_default/gg_otus_4feb2011/taxonomies/greengenes_tax.txt'
+GG_FASTA_FILE = 'gg_94_otus_4feb2011.fasta'#'/mnt/hawke_gut/srv/whitlam/bio/db/gg/qiime_default/gg_otus_4feb2011/rep_set/gg_94_otus_4feb2011.fasta'
 
 $LOAD_PATH.unshift(File.join(BASE_GIT_DIR, 'bioruby-krona','lib'))
 require 'bio-krona'
@@ -25,7 +27,7 @@ class PrimerPrimer < Sinatra::Base
   def self.init
     @@greengenes_otu_ids_to_species = {}
     $stderr.print "Caching greengenes background..."
-    File.open('/home/ben/mnt/hawke_gut/srv/whitlam/bio/db/gg/qiime_default/gg_otus_4feb2011/taxonomies/greengenes_tax.txt').each_line do |line|
+    File.open(GG_TAXONOMY_FILE).each_line do |line|
       splits = line.split("\t")
       raise unless splits.length == 2
       taxon = splits[1].split(';').collect do |lineage_string|
@@ -90,7 +92,7 @@ class PrimerPrimer < Sinatra::Base
 
     # Run this primer set against all greengenes otus
     primer_set = Bio::Ipcress::PrimerSet.new(params[:forward_primer],params[:reverse_primer])
-    gg_fasta = '/home/ben/mnt/hawke_gut/srv/whitlam/bio/db/gg/qiime_default/gg_otus_4feb2011/rep_set/gg_94_otus_4feb2011.fasta'
+    gg_fasta = GG_FASTA_FILE
     ipcress_hits = Bio::Ipcress.run(primer_set, gg_fasta, :mismatches => 1)
 
     logger.debug "Found #{ipcress_hits.length} hits with ipcress total (probably there is multiple hits in each species)"
